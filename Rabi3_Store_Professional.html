@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rabi3 Store</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Arial,sans-serif;background:#FFF9F4;}
+.header{
+background: linear-gradient(
+90deg,
+#E85D04 0%,
+#FB6A2F 45%,
+#FF9A3D 100%
+);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 70px;
+box-shadow:0 4px 15px rgba(251,102,47,.25);
+}
+.header img{width:100px;}
+.nav{display:flex;align-items:center;gap:20px;}
+.nav a{
+text-decoration:none;
+color:white;
+font-weight:bold;
+padding:8px 15px;
+border-radius:20px;
+transition:.3s;
+}
+.nav a:hover{background:#f5e4a2;color:black;}
+.nav button{
+background:#dec049;
+border:none;
+padding:10px 18px;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+}
+.nav button:hover{background:#ffd54f;}
+
+.hero{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:70px 50px;
+}
+.text{width:50%;}
+.text h2{color:rgb(251,102,47);margin-bottom:10px;}
+.text h1{font-size:45px;margin-bottom:20px;}
+.text p{line-height:1.8;color:#555;margin-bottom:20px;}
+
+.search{display:flex;gap:10px;}
+.search input{
+padding:10px;
+width:250px;
+border:1px solid gray;
+border-radius:20px;
+}
+.search button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:rgb(251,102,47);
+color:white;
+cursor:pointer;
+}
+.search button:hover{background:rgb(228,81,27);}
+
+.trending{
+background:white;
+padding:70px 50px;
+}
+.trending span{
+color:rgb(251,102,47);
+font-size:15px;
+font-weight:bold;
+text-transform:uppercase;
+letter-spacing:2px;
+}
+.trending h1{
+font-size:40px;
+margin-top:10px;
+color:#222;
+}
+.cards{
+    display:flex;
+    justify-content:space-between;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.card{
+    width:260px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    transition:0.3s;
+    cursor:pointer;
+
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+}
+
+.card-info{
+    padding:20px;
+    text-align:center;
+}
+
+.card-info h3{
+    color:rgb(251,102,47);
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.card-info p{
+    color:#666;
+    line-height:1.6;
+    font-size:15px;
+}
+.cart-icon{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+.card{
+    position: relative;
+}
+
+.cart-icon{
+    position:absolute;
+    right:15px;
+    bottom:15px;
+
+    font-size:24px;
+    color:#FB6A2F;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.cart-icon:hover{
+    color:#E85D04;
+    transform:scale(1.2);
+}
+
+.FAV-icon{
+    position:absolute;
+    top:15px;
+    right:15px;
+    font-size:22px;
+    color:#fc9797;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.FAV-icon:hover{
+    color:red;
+    transform:scale(1.2);
+}
+
+.cart-icon{
+    position:absolute;
+    bottom:15px;
+    right:15px;
+    font-size:22px;
+    color:#FB6A2F;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.cart-icon:hover{
+    color:#E85D04;
+    transform:scale(1.2);
+}
+.cart-btn,
+.fav-btn{
+    position:absolute;
+    text-decoration:none;
+}
+
+.cart-btn{
+    right:15px;
+    bottom:12px;
+}
+
+.fav-btn{
+    top:15px;
+    right:15px;
+}
+
+.tooltip{
+    position:absolute;
+    background:#222;
+    color:#fff;
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:6px;
+    white-space:nowrap;
+
+    right:35px;
+    top:50%;
+    transform:translateY(-50%);
+
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.cart-btn:hover .tooltip,
+.fav-btn:hover .tooltip{
+    opacity:1;
+    visibility:visible;
+}
+/* ========================= */
+/* Popular Games */
+/* ========================= */
+
+.popular-games{
+
+    padding:80px ;
+
+}
+
+.popular-games .section-title{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.popular-games .section-title h2{
+
+    font-size:40px;
+
+    color:#FB6A2F;
+
+}
+
+.popular-games .section-title p{
+
+    color:#d94f04;
+
+    margin-top:30px;
+
+    font-size:18px;
+
+}
+
+.popular-games .cards{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+}
+/* ========================= */
+/* Categories */
+/* ========================= */
+
+.categories{
+
+    padding:40px 8%;
+
+    background:#ffa86d;
+
+}
+
+.categories .section-title{
+
+    text-align:center;
+
+    margin-bottom:50px;
+}
+.category-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:25px;
+
+}
+
+.category-box{
+
+    width:260px;
+
+    height:180px;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    cursor:pointer;
+
+}
+
+.category-box img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s;
+
+}
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(71, 62, 56, 0.919);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:.4s;
+
+}
+
+.overlay h3{
+
+    color:white;
+
+    font-size:28px;
+
+    letter-spacing:1px;
+
+}
+
+.category-box:hover img{
+
+    transform:scale(1.15);
+
+}
+
+.category-box:hover .overlay{
+
+    background:rgba(219, 206, 202, 0.55);
+
+}
+
+
+.featured,.why,.newsletter,.footer{padding:70px 8%}
+.featured{background:#fff}
+.featured-box{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+.featured img{max-width:420px;width:100%;border-radius:20px}
+.buy-btn{display:inline-block;margin-top:20px;padding:12px 24px;background:#FB6A2F;color:#fff;text-decoration:none;border-radius:30px}
+.why{background:#fff7ef}
+.why-grid{display:flex;gap:20px;flex-wrap:wrap}
+.why-card{flex:1;min-width:220px;background:#fff;padding:25px;border-radius:16px;text-align:center}
+.newsletter{text-align:center;background:#ffe3cf}
+.newsletter input{padding:12px;width:280px;border-radius:30px;border:1px solid #ccc}
+.newsletter button{padding:12px 22px;border:none;border-radius:30px;background:#FB6A2F;color:#fff}
+.footer{background:#222;color:#fff;text-align:center}
+html{scroll-behavior:smooth}
+
+
+</style>
+
+<style>
+.header{position:sticky;top:0;z-index:999;backdrop-filter:blur(10px)}
+.nav a{position:relative;transition:.3s}
+.nav a::after{content:'';position:absolute;left:50%;bottom:-4px;width:0;height:3px;background:#ffd54f;transition:.3s;transform:translateX(-50%)}
+.nav a:hover::after{width:80%}
+button,.buy-btn{transition:.3s}
+button:hover,.buy-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,.2)}
+.card img{transition:.5s}.card:hover img{transform:scale(1.08)}
+.card-info h3{transition:.3s}.card:hover h3{color:#E85D04}
+.FAV-icon:hover{animation:bounce .5s}
+.cart-icon:hover{transform:rotate(20deg) scale(1.25)!important}
+.featured img{animation:float 3s ease-in-out infinite}
+.why-card,.category-box{transition:.35s}
+.why-card:hover,.category-box:hover{transform:translateY(-8px);box-shadow:0 15px 25px rgba(0,0,0,.2)}
+.newsletter input:focus{outline:none;box-shadow:0 0 15px rgba(251,106,47,.5)}
+.hero,.trending,.popular-games,.categories,.featured,.why,.newsletter,.footer{animation:fadeUp .8s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-12px)}}
+@keyframes bounce{50%{transform:scale(1.35)}}
+</style>
+
+</head>
+<body>
+
+<div class="header">
+<img src="لوجو2.png" alt="Rabi3 Store brand name in bold orange and white letters on a sleek gaming marketplace style background with an energetic gradient">
+<div class="nav">
+<a href="#">Home</a>
+<a href="#">Our Shop</a>
+<a href="#">Contact</a>
+<button>Sign In</button>
+</div>
+</div>
+
+<div class="hero">
+<div class="text">
+<h2>Welcome to Rabi3 Store</h2>
+<h1>Best Gaming Site Ever!</h1>
+<p>
+We offer a wide range of gaming products, from the latest consoles to classic games.
+Our team is dedicated to providing you with the best gaming experience possible.
+</p>
+</div>
+
+<div class="search">
+<input type="text" placeholder="Search...">
+<button>Search</button>
+</div>
+</div>
+<div class="trending">
+
+    <span>Trending</span>
+
+    <h1>Trending Games</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="download.jpg" alt="Ghost of Yōtei hero sprinting forward across a fiery orange battlefield with glowing energy creating an intense action mood">
+
+            <div class="card-info">
+                <h3>Ghost of Yōtei</h3>
+                <h5>Action-Adventure</h5>
+                <p>The Hunt Begins!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+
+        <div class="card">
+            <img src="007.avif" alt="Fantasy adventurer team poised for action in a bright outdoor landscape with bold colors and lively anticipation">
+
+            <div class="card-info">
+                <h3>007 First Light</h3>
+                <h5>Action-Adventure</h5>
+                <p>Earn the Number!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+
+        <div class="card">
+            <img src="10.jpg" alt="Lone protagonist standing in a sleek futuristic cityscape with polished glass architecture and a determined focused presence">
+
+            <div class="card-info">
+                <h3>Pragmata</h3>
+                <h5>Action-Adventure</h5>
+
+                <p>Go find the sea!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+
+    <div class="card">
+            <img src="11.jpg" alt="Action characters moving dynamically in a vibrant entertainment scene conveying excitement and high energy">
+
+            <div class="card-info">
+                <h3>Resident Evil Requie</h3>
+                <h5>Action Horror</h5>
+               
+                <p>Prepare to escape death!</p>
+            </div>
+           <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+<div class="card">
+            <img src="مغامرة1.jpg" alt="Lone protagonist standing in a sleek futuristic city with polished glass towers and a determined focused presence">
+
+            <div class="card-info">
+                <h3>God of War Ragnarök</h3>
+                <h5>Action-adventure</h5>
+                
+                <p>Ragnarök is coming!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+<div class="card">
+            <img src="مغامرة3.jpg" alt="photo">
+
+            <div class="card-info">
+                <h3> Elden Ring</h3>
+                <h5>Action-adventure</h5>
+                
+                <p>Rise, Tarnished!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+    </div>
+        <div class="card">
+            <img src="مغامرة2.jpg" alt="photo">
+
+            <div class="card-info">
+                <h3> Marvel's Spider-Man</h3>
+                <h5> Action-adventure</h5>
+                
+                <p>Be Greater!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+        <div class="card">
+            <img src="76.jpg" alt="photo">
+
+            <div class="card-info">
+                <h3> Mortal Kombat</h3>
+                <h5> Fighting</h5>
+                
+                <p>Flawless Victory!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+<div class="card">
+            <img src="كورة1.jpg" alt="photo">
+
+            <div class="card-info">
+                <h3>FC 26 </h3>
+                <h5> PEGI 3 / ESRB E</h5>
+                
+                <p>Own the pitch!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+<div class="card">
+            <img src="قتال2.jpg" alt="photo">
+
+            <div class="card-info">
+                <h3>Tekken 7 </h3>
+                <h5> Fighting</h5>
+                
+                <p>Unleash your fury!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+        <div class="card">
+            <img src="جديد1.jpg" alt="photo">
+
+            <div class="card-info">
+                <h3>SAROS </h3>
+                <h5> Sci-Fi Action-Adventure (Roguelite)</h5>
+                
+                <p>Survive the eclipse!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+<div class="card">
+            <img src="جديد2.jpg" alt="photo">
+
+            <div class="card-info">
+                <h3>Call of Duty Warzone </h3>
+                <h5> FPS
+                </h5>
+                
+                <p>Fight to survive!</p>
+            </div>
+            <a class="cart-btn" href="#">
+    <i class="fas fa-shopping-cart cart-icon"></i>
+    <span class="tooltip">Add to Cart</span>
+</a>
+
+<a class="fav-btn" href="#">
+    <i class="fa-solid fa-heart FAV-icon"></i>
+    <span class="tooltip">Add to Favorites</span>
+</a>
+        </div>
+
+        
+
+
+
+    </div>
+</div>
+<section class="popular-games">
+
+    <div class="section-title">
+        <h2>Popular Games</h2>
+        <p>Most Played Games</p>
+    </div>
+
+    <div class="cards">
+
+        <!-- Card 1 -->
+        <div class="card">
+
+            <img src="11.jpg" alt="">
+
+            <h3>God Of War Ragnarök</h3>
+
+            <p>
+                <br>  Get it before it ends!
+            </p>
+
+            <h4>  <br>  $69.99</h4>
+            
+
+            <a class="cart-btn" href="#">
+                <span class="tooltip">Add to Cart</span>
+                <i class="fas fa-shopping-cart cart-icon"></i>
+            </a>
+
+            <a class="fav-btn" href="#">
+                <span class="tooltip">Add to Favorites</span>
+                <i class="fa-solid fa-heart FAV-icon"></i>
+            </a>
+
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+
+            <img src="10.jpg" alt="">
+
+            <h3>Resident Evil 4</h3>
+
+            <p>
+              <br>  Get it before it ends!
+            </p>
+
+            <h4><br> $49.99</h4>
+
+            <a class="cart-btn" href="#">
+                <span class="tooltip">Add to Cart</span>
+                <i class="fas fa-shopping-cart cart-icon"></i>
+            </a>
+
+            <a class="fav-btn" href="#">
+                <span class="tooltip">Add to Favorites</span>
+                <i class="fa-solid fa-heart FAV-icon"></i>
+            </a>
+
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+
+            <img src="007.avif" alt="">
+
+            <h3>Black Myth: Wukong</h3>
+
+            <p>
+              <br>  Get it before it ends!
+            </p>
+
+            <h4> <br>$59.99</h4>
+
+            <a class="cart-btn" href="#">
+                <span class="tooltip">Add to Cart</span>
+                <i class="fas fa-shopping-cart cart-icon"></i>
+            </a>
+
+            <a class="fav-btn" href="#">
+                <span class="tooltip">Add to Favorites</span>
+                <i class="fa-solid fa-heart FAV-icon"></i>
+            </a>
+
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card">
+
+            <img src="download.jpg" alt="">
+
+            <h3>Ghost Of Yōtei</h3>
+
+            <p>
+            <br>    Get it before it ends!
+            </p>
+
+            <h4><br>$69.99</h4>
+
+            <a class="cart-btn" href="#">
+                <span class="tooltip">Add to Cart</span>
+                <i class="fas fa-shopping-cart cart-icon"></i>
+            </a>
+
+            <a class="fav-btn" href="#">
+                <span class="tooltip">Add to Favorites</span>
+                <i class="fa-solid fa-heart FAV-icon"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="categories">
+
+    <div class="section-title">
+        <h2>Browse Categories</h2>
+        <p>Find your favorite game genre</p>
+    </div>
+
+    <div class="category-container">
+
+        <div class="category-box">
+            <img src="ايقونه1.jpg" alt="">
+            <div class="overlay">
+                <h3>Action</h3>
+            </div>
+        </div>
+
+        <div class="category-box">
+            <img src="ايقونه3.jpg" alt="">
+            <div class="overlay">
+                <h3>Horror</h3>
+            </div>
+        </div>
+
+        <div class="category-box">
+            <img src="ايقونه2.jpg" alt="">
+            <div class="overlay">
+                <h3>Sports</h3>
+            </div>
+        </div>
+
+        <div class="category-box">
+            <img src="ايقونه4.jpg" alt="">
+            <div class="overlay">
+                <h3>Racing</h3>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="featured">
+<h2 style="color:#FB6A2F;margin-bottom:25px;">🔥 Featured Game</h2>
+<div class="featured-box">
+<img src="download.jpg" alt="Featured Game">
+<div>
+<h1>Ghost of Yōtei</h1>
+<p>Discover one of the most anticipated action adventures with stunning graphics and immersive gameplay.</p>
+<a href="#" class="buy-btn">Buy Now</a>
+</div></div></section>
+
+<section class="why">
+<h2 style="text-align:center;color:#FB6A2F;margin-bottom:30px;">⭐ Why Choose Rabi3 Store?</h2>
+<div class="why-grid">
+<div class="why-card"><h3>Fast Delivery</h3><p>Instant digital access.</p></div>
+<div class="why-card"><h3>Best Prices</h3><p>Great deals every week.</p></div>
+<div class="why-card"><h3>Trusted Support</h3><p>We're here to help.</p></div>
+</div></section>
+
+<section class="newsletter">
+<h2>📧 Newsletter</h2>
+<p>Subscribe for the latest games and offers.</p>
+<input placeholder="Enter your email">
+<button>Subscribe</button>
+</section>
+
+<footer class="footer">
+<h2>Rabi3 Store</h2>
+<p>© 2026 All Rights Reserved.</p>
+</footer>
+</body>
+</html>
